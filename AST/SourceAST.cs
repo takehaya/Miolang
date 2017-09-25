@@ -2,7 +2,6 @@ using System;
 using System.Text;
 using MioLang.Utils;
 
-
 namespace MioLang.AST
 {
     abstract class SExpr
@@ -74,7 +73,7 @@ namespace MioLang.AST
             VarName = name;
         }
 
-        public override string ToString() =>string.Format("({0})",VarName)
+        public override string ToString() =>string.Format("({0})",VarName);
     }
 
     class SFunc :SExpr

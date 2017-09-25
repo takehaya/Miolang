@@ -29,15 +29,22 @@ namespace MioLang.InputSource
          public void AddSourceFile(string fname){
             if (File.Exists(fname))
             {
-                var file = new FileStream(fname,FileMode.Open);
+                var file = new FileStream(fname, FileMode.Open);
                 var tr = new StreamReader(file);
-                var srcfile = new SourceFile(tr,fname);
-                sourceQueue.Enqueue(srcfile);
-            }else
+                var srcfile = new SourceFile(tr, fname);
+                NewMethod(srcfile);
+            }
+            else
             {
                 throw new Error("sourcefile："+fname+"not found :(");
             }
         }
+
+        private void NewMethod(SourceFile srcfile)
+        {
+            sourceQueue.Enqueue(srcfile);
+        }
+
         public void IncludeSourceFile(string fname){
             if (File.Exists(fname))
             {
@@ -83,7 +90,7 @@ namespace MioLang.InputSource
                         currentSrcfile = sourceStack.Pop();
                         continue;
                     }else if (0<sourceQueue.Count){
-                        currentSrcfile = sourceStack.Pop();
+                        currentSrcfile = sourceQueue.Dequeue();
                         continue;
                     }else{
                         break;

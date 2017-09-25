@@ -1,5 +1,7 @@
 ﻿using System;
 using MioLang.InputSource;
+using MioLang.Lexing;
+using MioLang.Parsing;
 namespace MioLang
 {
     class Program
@@ -9,14 +11,22 @@ namespace MioLang
         static void Main(string[] args)
         {
             Console.WriteLine("Hello MioLang!");
+            runtest(args);
         }
-        void runtest(string[] args)
+        static void runtest(string[] args)
         {
-            var InputStream = new InputStream();
+            Console.WriteLine(args);
+            var inputStream = new InputStream();
             foreach (var filedata in args)
             {
-                InputStream.AddSourceFile(filedata);
+                inputStream.AddSourceFile(filedata);
             }
+
+            var lex = new Lexing.Lexer(inputStream);
+            var par = new ParseContext(lex);
+            var expr = Parser.Parse(par);
+
+            Console.WriteLine(expr);
         }
     }
 }

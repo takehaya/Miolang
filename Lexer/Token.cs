@@ -1,4 +1,4 @@
-namespace MioLang.Lexer
+namespace MioLang.Lexing
 {
     
     public class Token{
