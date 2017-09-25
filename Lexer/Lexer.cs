@@ -4,14 +4,14 @@ using System.Text;
 using MioLang.InputSource;
 using MioLang.Utils;
 
-namespace MioLang.Lexer
+namespace MioLang.Lexing
 {
     /// <summary>
     /// Lexer.
     /// </summary>
     public class Lexer
     {
-        InputSource stream;
+        InputStream stream;
         Dictionary<string, TokenType> keywords;
         Dictionary<char, TokenType> symbols;
 
